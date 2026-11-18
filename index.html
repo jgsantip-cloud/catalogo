@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estoque Seminovos Diamante</title>
+<style>
+  :root{ --azul:#1f3a8a; --bg:#eef1f7; --card:#fff; --linha:#e2e8f0; --cinza:#64748b; }
+  *{ box-sizing:border-box; }
+  body{ margin:0; font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:var(--bg); color:#1f2937; }
+  header{ background:linear-gradient(135deg,#1f3a8a,#2f4fb0); color:#fff; padding:20px 18px; }
+  header h1{ margin:0; font-size:20px; letter-spacing:.3px; }
+  header p{ margin:4px 0 0; font-size:13px; opacity:.9; }
+  .wrap{ max-width:1180px; margin:0 auto; padding:16px 14px 40px; }
+  .busca{ width:100%; padding:12px 14px; border:1px solid var(--linha); border-radius:12px; font-size:15px; margin:14px 0 6px; }
+  .filtros{ display:flex; flex-wrap:wrap; gap:8px; margin:8px 0 4px; }
+  .chip{ border:1px solid #cdd8ef; background:#fff; color:var(--azul); font-weight:700; font-size:13px; padding:9px 14px; border-radius:22px; cursor:pointer; transition:.15s; }
+  .chip:hover{ background:#eaf0ff; }
+  .chip.on{ background:var(--azul); color:#fff; border-color:var(--azul); }
+  .cont{ font-size:12.5px; color:var(--cinza); margin-bottom:12px; margin-top:8px; }
+  .grade{ display:grid; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); gap:14px; }
+  .card{ background:var(--card); border:1px solid var(--linha); border-radius:14px; overflow:hidden; display:flex; flex-direction:column; }
+  .card .fotowrap{ position:relative; }
+  .card .foto{ width:100%; aspect-ratio:4/3; object-fit:cover; background:#dbe2f0; display:block; }
+  .tag-blind{ position:absolute; top:8px; left:8px; background:#0f172a; color:#fff; font-size:10.5px; font-weight:800; letter-spacing:.5px; padding:4px 9px; border-radius:20px; box-shadow:0 2px 6px rgba(0,0,0,.28); }
+  .card .body{ padding:11px 13px 13px; display:flex; flex-direction:column; gap:6px; }
+  .card .modelo{ font-weight:700; font-size:15px; line-height:1.25; }
+  .card .versao{ font-size:11px; color:var(--cinza); line-height:1.2; }
+  .card .specs{ font-size:12.5px; color:var(--cinza); }
+  .card .preco{ font-weight:800; font-size:18px; color:var(--azul); }
+  .card .precoantes{ font-size:12.5px; color:var(--cinza); text-decoration:line-through; margin-bottom:-4px; }
+  .tag-queda{ position:absolute; bottom:8px; left:8px; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(160deg,#f97316,#c2410c); color:#fff; font-size:11px; font-weight:800; letter-spacing:.3px; padding:5px 11px; border-radius:20px; box-shadow:0 2px 7px rgba(0,0,0,.3); }
+  .tag-fipe{ position:absolute; top:8px; left:8px; display:inline-flex; align-items:center; gap:5px; background:linear-gradient(160deg,#22c55e,#15803d); color:#fff; font-size:11px; font-weight:800; letter-spacing:.3px; padding:5px 11px; border-radius:20px; box-shadow:0 2px 7px rgba(0,0,0,.3); }
+  .card .rodape{ display:flex; align-items:center; gap:10px; margin-top:4px; }
+  .card .qr{ width:66px; height:66px; border:1px solid var(--linha); border-radius:8px; }
+  .card .btn{ flex:1; text-align:center; text-decoration:none; background:var(--azul); color:#fff; font-weight:700; font-size:13.5px; padding:10px; border-radius:10px; }
+  .card .qrbox{ text-align:center; cursor:pointer; }
+  .card .qrlab{ font-size:10.5px; color:var(--azul); text-align:center; font-weight:700; }
+  .vazio{ color:var(--cinza); padding:30px; text-align:center; }
+  .modal{ display:none; position:fixed; inset:0; background:rgba(15,23,42,.72); z-index:50; align-items:center; justify-content:center; padding:20px; }
+  .modal.on{ display:flex; }
+  .modal .box{ background:#fff; border-radius:18px; padding:22px 22px 18px; text-align:center; max-width:92vw; }
+  .modal .box img{ width:min(78vw,360px); height:auto; display:block; }
+  .modal .box .p{ font-weight:800; color:var(--azul); font-size:20px; letter-spacing:1px; margin-top:10px; }
+  .modal .box .h{ font-size:12.5px; color:var(--cinza); margin-top:2px; }
+  .modal .fechar{ margin-top:14px; background:var(--azul); color:#fff; border:0; border-radius:10px; padding:11px 22px; font-weight:800; font-size:14px; cursor:pointer; }
+  @media (max-width:520px){ .grade{ grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:10px; } .card .qr{ width:54px; height:54px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>&#128663; Estoque Seminovos Diamante</h1>
+  <p>Busque o carro, escaneie o QR e poste no seu Story &middot; Status</p>
+</header>
+<div class="wrap">
+  <input class="busca" id="busca" placeholder="&#128269; Buscar por marca ou modelo...">
+  <div class="filtros" id="filtros">
+    <button class="chip on" data-modo="todos" onclick="setModo('todos')">Ver todos</button>
+    <button class="chip" data-modo="aleatorios" onclick="setModo('aleatorios')">&#127922; 5 aleat&oacute;rios</button>
+    <button class="chip" data-modo="recentes" onclick="setModo('recentes')">&#127381; Rec&eacute;m-chegados</button>
+    <button class="chip" data-modo="baixou" id="chipBaixou" style="display:none" onclick="setModo('baixou')">&#128184; Baixou de pre&ccedil;o</button>
+  </div>
+  <div class="cont" id="cont"></div>
+  <div class="grade" id="grade"></div>
+  <div class="vazio" id="vazio" style="display:none">Nenhum carro encontrado.</div>
+</div>
+<div class="modal" id="modal" onclick="fecharQR(event)">
+  <div class="box">
+    <img id="modalimg" src="" alt="QR ampliado">
+    <div class="p" id="modalplaca"></div>
+    <div class="h" id="modaltit"></div>
+    <button class="fechar" onclick="fecharModal()">Fechar</button>
+  </div>
+</div>
+<script>
+let CARROS = [];
+function abrirQR(src, titulo){
+  document.getElementById('modalimg').src = src;
+  document.getElementById('modalplaca').textContent = titulo;
+  document.getElementById('modaltit').textContent = 'Escaneie para compartilhar';
+  document.getElementById('modal').classList.add('on');
+}
+function fecharModal(){ document.getElementById('modal').classList.remove('on'); }
+function fecharQR(e){ if(e.target.id === 'modal') fecharModal(); }
+const grade = document.getElementById('grade');
+const cont = document.getElementById('cont');
+const vazio = document.getElementById('vazio');
+
+function card(c){
+  return `<div class="card">
+    <div class="fotowrap">
+      <img class="foto" src="${c.capa}" loading="lazy" alt="${c.titulo}">
+      ${c.blindado ? '<span class="tag-blind">&#128737; BLINDADO</span>' : ''}
+      ${c.fipe_abaixo ? `<span class="tag-fipe">&#8595; ${c.fipe_abaixo}</span>` : ''}
+      ${c.queda_fmt ? `<span class="tag-queda">&#8595; ${c.queda_fmt}</span>` : ''}
+    </div>
+    <div class="body">
+      <div class="modelo">${c.titulo}</div>
+      ${c.versao ? `<div class="versao">${c.versao}</div>` : ''}
+      <div class="specs">${c.ano} &middot; ${c.km_fmt}</div>
+      ${c.preco_antes_fmt ? `<div class="precoantes">${c.preco_antes_fmt}</div>` : ''}
+      <div class="preco">${c.preco_fmt}</div>
+      <div class="rodape">
+        <div class="qrbox" onclick="abrirQR('${c.qr}','${c.titulo}')">
+          <img class="qr" src="${c.qr}" alt="QR">
+          <div class="qrlab">&#128269; ampliar</div>
+        </div>
+        <a class="btn" href="share.html?id=${c.id}">Compartilhar &rarr;</a>
+      </div>
+    </div>
+  </div>`;
+}
+
+let MODO = 'todos';       // todos | aleatorios | recentes | baixou
+let EMBARALHADO = [];     // ordem aleatória fixa da sessão (modo "todos")
+
+function embaralhar(arr){  // Fisher-Yates, devolve cópia
+  const a = arr.slice();
+  for(let i=a.length-1; i>0; i--){ const j = Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+  return a;
+}
+
+function baseLista(){
+  if(MODO === 'aleatorios') return embaralhar(CARROS).slice(0,5);
+  if(MODO === 'recentes')   return CARROS.slice().sort((a,b)=> (b.entrada||'').localeCompare(a.entrada||''));
+  if(MODO === 'baixou')     return CARROS.filter(c=>c.queda_fmt).sort((a,b)=> (b.baixou_em||'').localeCompare(a.baixou_em||''));
+  return EMBARALHADO;       // todos
+}
+
+function render(lista, rotuloHtml){
+  grade.innerHTML = lista.map(card).join('');
+  vazio.style.display = lista.length ? 'none' : 'block';
+  cont.innerHTML = rotuloHtml || `${lista.length} de ${CARROS.length} carros`;
+}
+
+function aplicar(){
+  const t = document.getElementById('busca').value.trim().toLowerCase();
+  if(t){
+    const r = CARROS.filter(c =>
+      c.titulo.toLowerCase().includes(t) ||
+      c.marca.toLowerCase().includes(t) ||
+      (c.versao||'').toLowerCase().includes(t));
+    render(r, `${r.length} de ${CARROS.length} carros`);
+    return;
+  }
+  const lista = baseLista();
+  const rot = MODO === 'aleatorios' ? `${lista.length} aleat&oacute;rios &middot; toque de novo pra trocar`
+            : MODO === 'recentes'   ? `${lista.length} carros &middot; rec&eacute;m-chegados primeiro`
+            : MODO === 'baixou'     ? `${lista.length} carros com pre&ccedil;o menor &middot; mais recentes primeiro`
+            : `${lista.length} carros`;
+  render(lista, rot);
+}
+
+function setModo(m){
+  MODO = m;
+  document.getElementById('busca').value = '';
+  document.querySelectorAll('#filtros .chip').forEach(b =>
+    b.classList.toggle('on', b.dataset.modo === m));
+  aplicar();
+}
+
+document.getElementById('busca').addEventListener('input', aplicar);
+fetch('estoque.json?v='+Date.now()).then(r=>r.json()).then(d=>{
+  CARROS = d.carros;
+  if(CARROS.some(c=>c.queda_fmt)) document.getElementById('chipBaixou').style.display = '';
+  EMBARALHADO = embaralhar(CARROS);   // padrão ao abrir = embaralhado
+  aplicar();
+});
+</script>
+</body>
+</html>
