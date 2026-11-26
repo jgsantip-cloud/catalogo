@@ -526,6 +526,27 @@
       "baixou_em": "2026-11-25"
     },
     {
+      "id": "9eb036e22cd3",
+      "marca": "Mercedes-Benz",
+      "titulo": "Mercedes-Benz Gla 200",
+      "versao": "1.6 CGI FLEX STYLE 7G-DCT",
+      "ano": 2019,
+      "km": 71200,
+      "km_fmt": "71.200 km",
+      "preco": 129890.0,
+      "preco_fmt": "R$ 129.890",
+      "capa": "https://s3.agsistema.net/6595/vehicles/2896751/photos/fXbhjJeTvoIyDQoqRNTJQ5jDmd2uqx5U.jpg",
+      "arte": "artes/9eb036e22cd3.png",
+      "qr": "qr/9eb036e22cd3.png",
+      "blindado": true,
+      "arte_pronta": true,
+      "entrada": "2026-11-14",
+      "fipe_abaixo": null,
+      "preco_antes_fmt": null,
+      "queda_fmt": null,
+      "baixou_em": null
+    },
+    {
       "id": "ce1882ea8233",
       "marca": "Nissan",
       "titulo": "Nissan Kicks",
@@ -688,7 +709,7 @@
       "blindado": false,
       "arte_pronta": true,
       "entrada": "2026-10-14",
-      "fipe_abaixo": "R$ 3 mil abaixo da FIPE",
+      "fipe_abaixo": null,
       "preco_antes_fmt": "R$ 116.890",
       "queda_fmt": "R$ 5 mil a menos",
       "baixou_em": "2026-11-25"
