@@ -197,8 +197,8 @@
       "ano": 2024,
       "km": 29910,
       "km_fmt": "29.910 km",
-      "preco": 219890.0,
-      "preco_fmt": "R$ 219.890",
+      "preco": 209890.0,
+      "preco_fmt": "R$ 209.890",
       "capa": "https://s3.agsistema.net/6698/vehicles/2800844/photos/goPQQoR6T7ydJHqszf0XBCDSXPX9ENQz.jpg",
       "arte": "artes/3039dda24707.png",
       "qr": "qr/3039dda24707.png",
@@ -206,9 +206,9 @@
       "arte_pronta": true,
       "entrada": "2026-08-25",
       "fipe_abaixo": null,
-      "preco_antes_fmt": null,
-      "queda_fmt": null,
-      "baixou_em": null
+      "preco_antes_fmt": "R$ 219.890",
+      "queda_fmt": "R$ 10 mil a menos",
+      "baixou_em": "2026-11-28"
     },
     {
       "id": "f8f33ffcf9ef",
@@ -374,9 +374,9 @@
       "arte_pronta": true,
       "entrada": "2026-09-14",
       "fipe_abaixo": "R$ 9 mil abaixo da FIPE",
-      "preco_antes_fmt": "R$ 156.890",
-      "queda_fmt": "R$ 7 mil a menos",
-      "baixou_em": "2026-11-12"
+      "preco_antes_fmt": null,
+      "queda_fmt": null,
+      "baixou_em": null
     },
     {
       "id": "87ce1a536d64",
@@ -458,9 +458,9 @@
       "arte_pronta": true,
       "entrada": "2026-08-20",
       "fipe_abaixo": "R$ 14 mil abaixo da FIPE",
-      "preco_antes_fmt": "R$ 144.890",
-      "queda_fmt": "R$ 2 mil a menos",
-      "baixou_em": "2026-11-12"
+      "preco_antes_fmt": null,
+      "queda_fmt": null,
+      "baixou_em": null
     },
     {
       "id": "ef822e824e4e",
@@ -694,27 +694,6 @@
       "baixou_em": null
     },
     {
-      "id": "6f4d53e527b1",
-      "marca": "Mini",
-      "titulo": "Mini Cooper",
-      "versao": "1.5 12V TWINPOWER GASOLINA 4P STEPTRONIC",
-      "ano": 2021,
-      "km": 44769,
-      "km_fmt": "44.769 km",
-      "preco": 114890.0,
-      "preco_fmt": "R$ 114.890",
-      "capa": "https://s3.agsistema.net/6699/vehicles/2822580/photos/MJWZvNAThw4L5gGeX5PIPWW7RzFO3Rse.jpg",
-      "arte": "artes/6f4d53e527b1.png",
-      "qr": "qr/6f4d53e527b1.png",
-      "blindado": false,
-      "arte_pronta": true,
-      "entrada": "2026-09-10",
-      "fipe_abaixo": "R$ 14 mil abaixo da FIPE",
-      "preco_antes_fmt": null,
-      "queda_fmt": null,
-      "baixou_em": null
-    },
-    {
       "id": "9ee8460bcd0f",
       "marca": "Hyundai",
       "titulo": "Hyundai Creta",
@@ -755,27 +734,6 @@
       "preco_antes_fmt": null,
       "queda_fmt": null,
       "baixou_em": null
-    },
-    {
-      "id": "b960e6ac915e",
-      "marca": "Nissan",
-      "titulo": "Nissan Versa",
-      "versao": "1.6 16V FLEX EXCLUSIVE XTRONIC",
-      "ano": 2026,
-      "km": 11702,
-      "km_fmt": "11.702 km",
-      "preco": 111890.0,
-      "preco_fmt": "R$ 111.890",
-      "capa": "https://s3.agsistema.net/6595/vehicles/2862861/photos/dRsF22xbBeHVinLWcMutzpuH3wN5TAmb.jpg",
-      "arte": "artes/b960e6ac915e.png",
-      "qr": "qr/b960e6ac915e.png",
-      "blindado": false,
-      "arte_pronta": true,
-      "entrada": "2026-10-14",
-      "fipe_abaixo": "R$ 3 mil abaixo da FIPE",
-      "preco_antes_fmt": "R$ 116.890",
-      "queda_fmt": "R$ 5 mil a menos",
-      "baixou_em": "2026-11-25"
     },
     {
       "id": "cc39b05fd372",
